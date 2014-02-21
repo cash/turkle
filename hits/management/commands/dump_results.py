@@ -59,7 +59,7 @@ class Command(BaseCommand):
 
         fieldnames, rows = results_data(completed_hits)
         with open(results_csv_file_path, 'wb') as fh:
-            writer = DictWriter(fh, fieldnames)
+            writer = DictWriter(fh, fieldnames, lineterminator='\n')
             writer.writeheader()
             for row in rows:
                 writer.writerow(row)
