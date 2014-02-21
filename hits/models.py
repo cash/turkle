@@ -22,23 +22,12 @@ class Hit(models.Model):
                 self.input_csv_fields[field]
             )
 
-        # Surround the html in the form with two div tags:
-        # one surrounding the HIT in a black box
-        # and the other creating some white space between the black box and the
-        # form.
-        border = (
-            '<div style="'
-            ' width:100%%;'
-            ' border:2px solid black;'
-            ' margin-top:10px'
-            '">'
-            '%s'
-            '</div>'
+        # TODO: move wrapper into a view
+        wrapper = (
+            '<div class="panel panel-default"><div class="panel-body">%s</div></div>'
         )
-        margin = '<div style="width:100%%; margin:10px">%s</div>'
 
-        result = margin % result
-        result = border % result
+        result = wrapper % result
         return result
 
     def save(self, *args, **kwargs):

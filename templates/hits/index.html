@@ -2,24 +2,27 @@
 {% block body %}
 {% block content %}
 {% endblock %}
-<h1>Unfinished HITs</h1>
-{% if unfinished_hit_list %}
+<div class="container">
+    <h1>Unfinished HITs</h1>
+    {% if unfinished_hit_list %}
     <ul>
-    {% for hit in unfinished_hit_list %}
-    <li><a href="/hits/{{ hit.id }}/">HIT {{ hit.id }}</a></li>
-    {% endfor %}
+        {% for hit in unfinished_hit_list %}
+        <li><a href="/hits/{{ hit.id }}/">HIT {{ hit.id }}</a></li>
+        {% endfor %}
     </ul>
-{% else %}
+    {% else %}
     <p>No HITs are available.</p>
-{% endif %}
-<h1>Finished HITs</h1>
-{% if finished_hit_list %}
+    {% endif %}
+
+    <h1>Finished HITs</h1>
+    {% if finished_hit_list %}
     <ul>
-    {% for hit in finished_hit_list %}
-    <li><a href="/hits/{{ hit.id }}/">HIT {{ hit.id }}</a></li>
-    {% endfor %}
+        {% for hit in finished_hit_list %}
+        <li><a href="/hits/{{ hit.id }}/">HIT {{ hit.id }}</a></li>
+        {% endfor %}
     </ul>
-{% else %}
+    {% else %}
     <p>No HITs are available.</p>
-{% endif %}
+    {% endif %}
+</div>
 {% endblock %}
