@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 {% block body %}
-<div>
-  <b>You're working on HIT:</b> {{ hit.id }}<br />
-  <b>which is derived from the template named:</b> {{ hit.template.name }}<br />
-  {% if hit.completed %}
-  <b>Your answers from the previous submission:</b> {{ hit.answers }}<br />
-  {% endif %}
+<div class="container">
+    <div class="well">
+        <h4>You're working on HIT: {{ hit.id }}</h4>
+        <h4>Derived from the template: {{ hit.template.name }}</h4>
+        {% if hit.completed %}
+        <h4>Your answers from the previous submission: {{ hit.answers }}</h4>
+        {% endif %}
+    </div>
 </div>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<form action="/hits/{{ hit.id }}/submission/" method="post">
-  {% csrf_token %}
-  {% autoescape off %}{{ hit.generate_form }}{% endautoescape %}
-  <input type="submit" value="Submit" />
-</form>
+{% if error_message %}
+<div class="alert alert-danger">{{ error_message }}</div>
+{% endif %}
+<div class="container-fluid">
+    <form action="/hits/{{ hit.id }}/submission/" method="post">
+        {% csrf_token %}
+        {% autoescape off %}{{ hit.generate_form }}{% endautoescape %}
+        <input type="submit" value="Submit" />
+    </form>
+</div>
 {% endblock %}
