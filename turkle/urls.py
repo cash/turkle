@@ -13,6 +13,8 @@ urlpatterns = patterns('',
 
     url(r'^hits/', include('hits.urls')),
 
+    url(r'^docs/', include('scalpl.urls')),
+
     # Welcome pages
     #url(r'^welcome/$')
     #url(r'^welcome?variant=worker/$')
