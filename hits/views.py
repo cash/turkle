@@ -26,9 +26,10 @@ def index(request):
 
 def detail(request, hit_id):
     h = get_object_or_404(Hit, pk=hit_id)
+    num_left = len(Hit.objects.filter(completed=False).order_by('id'))
     return render_to_response(
         'hits/detail.html',
-        {'hit': h},
+        {'hit': h, 'num_left': num_left},
         context_instance=RequestContext(request)
     )
 

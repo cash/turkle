@@ -3,10 +3,7 @@
 <div class="container">
     <div class="well">
         <h4>You're working on Task: {{ hit.id }}</h4>
-        <h4>Derived from the template: {{ hit.template.name }}</h4>
-        {% if hit.completed %}
-        <h4>Your answers from the previous submission: {{ hit.answers }}</h4>
-        {% endif %}
+        <h4>Number of tasks left: {{ num_left }}</h4>
     </div>
 </div>
 {% if error_message %}
