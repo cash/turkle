@@ -3,26 +3,26 @@
 {% block content %}
 {% endblock %}
 <div class="container">
-    <h1>Unfinished HITs</h1>
+    <h1>Unfinished Tasks</h1>
     {% if unfinished_hit_list %}
     <ul>
         {% for hit in unfinished_hit_list %}
-        <li><a href="/hits/{{ hit.id }}/">HIT {{ hit.id }}</a></li>
+        <li><a href="/hits/{{ hit.id }}/">Task {{ hit.id }}</a></li>
         {% endfor %}
     </ul>
     {% else %}
-    <p>No HITs are available.</p>
+    <p>No tasks are available.</p>
     {% endif %}
 
-    <h1>Finished HITs</h1>
+    <h1>Finished Tasks</h1>
     {% if finished_hit_list %}
     <ul>
         {% for hit in finished_hit_list %}
-        <li><a href="/hits/{{ hit.id }}/">HIT {{ hit.id }}</a></li>
+        <li><a href="/hits/{{ hit.id }}/">Task {{ hit.id }}</a></li>
         {% endfor %}
     </ul>
     {% else %}
-    <p>No HITs are available.</p>
+    <p>No tasks are available.</p>
     {% endif %}
 </div>
 {% endblock %}
