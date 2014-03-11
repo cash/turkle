@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, loader, RequestContext
 from hits.models import Hit
@@ -38,9 +38,21 @@ def results(request, hit_id):
 
 
 def submission(request, hit_id):
+
+    unfinished_hit_list = Hit.objects.filter(completed=False).order_by('id')
+    unfinished_hit_ids = [str(x.id) for x in unfinished_hit_list]
+
     h = get_object_or_404(Hit, pk=hit_id)
     h.completed = True
     h.answers = dict(request.POST.items())
     h.save()
+
+    # forward to next hit if this was an unfinished hit
+    hit_id = str(hit_id)
+    if hit_id in unfinished_hit_ids and len(unfinished_hit_ids) > 1:
+        unfinished_hit_ids = [x for x in unfinished_hit_ids if x != hit_id]
+        next_hit = unfinished_hit_ids[0]
+        return HttpResponseRedirect('/hits/' + next_hit)
+
     t = loader.get_template('hits/submission.html')
     return HttpResponse(hits_list_context(t, {'submitted_hit': h}))
